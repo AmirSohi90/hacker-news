@@ -21,21 +21,16 @@ export const getMonth = month => {
 };
 
 export const getDay = day => {
-  const daysSuffixExceptions = [
-    { day: "1st", exceptionNumber: 1 },
-    { day: "2nd", exceptionNumber: 2 },
-    { day: "3rd", exceptionNumber: 3 },
-    { day: "21st", exceptionNumber: 21 },
-    { day: "22nd", exceptionNumber: 22 },
-    { day: "23rd", exceptionNumber: 23 },
-    { day: "31st", exceptionNumber: 31 }
-  ];
-
-  const daySuffixException = daysSuffixExceptions.find(
-    suffixException => day === suffixException.exceptionNumber
-  );
-
-  return daySuffixException ? daySuffixException.day : `${day}th`;
+  const daysSuffixExceptions = {
+    1: { day: "1st" },
+    2: { day: "2nd" },
+    3: { day: "3rd" },
+    21: { day: "21st" },
+    22: { day: "22nd" },
+    23: { day: "23rd" },
+    31: { day: "31st" }
+  };
+  return daysSuffixExceptions[day] ? daysSuffixExceptions[day].day : `${day}th`;
 };
 
 const getReadableTimeStamp = timeStamp => {

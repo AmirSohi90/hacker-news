@@ -57,6 +57,7 @@ class App extends Component {
         {Boolean(stories.length) && (
           <div>
             <header className="app-header">
+              <h1>Hacker News?! Hacker News.</h1>
               <Pagination
                 maxPage={maxPage}
                 page={page}
