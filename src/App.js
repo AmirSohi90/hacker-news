@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { getTopStories, getTopStoriesIds } from "./services/getTopStories";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      storyIds: [],
+      stories: []
+    };
+  }
+
+  componentDidMount = async () => {
+    const storyIds = await getTopStoriesIds();
+    const stories = await getTopStories(storyIds);
+    this.setState({ storyIds, stories });
+  };
+
+  render() {
+    const { stories } = this.state;
+    return Boolean(!stories.length) ? (
+      <div className="App">
+        <p>Loading...</p>
+      </div>
+    ) : (
+      <div className="App">
+        <header>{/* header will go here */}</header>
+        <main className="main">{/* story grid goes here */}</main>
+      </div>
+    );
+  }
 }
 
 export default App;
