@@ -17,9 +17,9 @@ export const getItemFromHackerNews = async (id, itemType) => {
     return response.data.text ? response.data.text : "No Comment";
 };
 
-export const getTopStories = async data => {
+export const getTopStories = async storyIds => {
   return Promise.all(
-    data.map(async storyId => {
+    storyIds.map(async storyId => {
       const {
         by,
         id,
