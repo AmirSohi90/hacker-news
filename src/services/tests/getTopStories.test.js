@@ -1,0 +1,80 @@
+import axios from "axios";
+import {
+  getTopStoriesIds,
+  getItemFromHackerNews,
+  getTopStories
+} from "../getTopStories";
+
+jest.mock("axios");
+
+describe("getTopStoriesIds", () => {
+  it("fetches successfully data from the API", async () => {
+    const data = { data: [1, 2, 3, 4, 5] };
+
+    axios.get.mockImplementation(() => Promise.resolve(data));
+
+    await expect(getTopStoriesIds()).resolves.toEqual(data.data);
+  });
+});
+
+describe("getItemFromHackerNews", () => {
+  it("successfully fetches a story from Hacker News", async () => {
+    const data = { data: "this is a story" };
+
+    axios.get.mockImplementation(() => Promise.resolve(data));
+
+    await expect(getItemFromHackerNews(1, "story")).resolves.toEqual(data.data);
+  });
+
+  it("successfully fetches a comment from Hacker News", async () => {
+    const data = { data: { text: "this is a comment" } };
+
+    axios.get.mockImplementation(() => Promise.resolve(data));
+
+    await expect(getItemFromHackerNews(1, "comment")).resolves.toEqual(
+      "this is a comment"
+    );
+  });
+
+  it("returns 'no comment' if comment has no text from Hacker News", async () => {
+    const data = { data: {} };
+
+    axios.get.mockImplementation(() => Promise.resolve(data));
+
+    await expect(getItemFromHackerNews(1, "comment")).resolves.toEqual(
+      "No Comment"
+    );
+  });
+});
+
+describe("getTopStories", () => {
+  it("fetches the top stories from hacker news", async () => {
+    const data = {
+      data: {
+        by: "author",
+        id: 1,
+        score: 500,
+        title: "title",
+        url: "url",
+        kids: [],
+        time: 1175714200
+      }
+    };
+
+    const returnedData = [
+      {
+        author: "author",
+        id: 1,
+        score: 500,
+        text: "No Comment",
+        timestamp: "4th April 2007 20:16:40",
+        title: "title",
+        url: "url"
+      }
+    ];
+
+    axios.get.mockImplementation(() => Promise.resolve(data));
+
+    await expect(getTopStories([1])).resolves.toEqual(returnedData);
+  });
+});

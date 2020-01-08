@@ -39,10 +39,10 @@ export const getTopStories = async data => {
 
       return {
         author: by,
-        id: id,
-        score: score,
-        title: title,
-        url: url,
+        id,
+        score,
+        title,
+        url,
         timestamp: getReadableTimestamp(timestamp),
         text
       };
