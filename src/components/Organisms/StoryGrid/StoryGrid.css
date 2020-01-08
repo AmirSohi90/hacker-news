@@ -6,3 +6,15 @@
   grid-template-columns: repeat(8, auto);
   grid-template-rows: repeat(3, auto);
 }
+
+@media (max-width: 1024px) {
+  .grid-wrapper {
+    grid-template-columns: repeat(4, auto);
+  }
+}
+
+@media (max-width: 767px) {
+  .grid-wrapper {
+    grid-template-columns: repeat(2, auto);
+  }
+}
