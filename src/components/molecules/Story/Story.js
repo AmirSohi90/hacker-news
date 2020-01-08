@@ -25,12 +25,12 @@ const Story = ({ title, text, url, author, score, timestamp }) => {
       </span>
       <section className="article-wrapper">
         <header className="story-header">
-          <h1 className="story-title">
+          <h2 className="story-title">
             <a href={url} className="story-link">
               {title}
             </a>
-          </h1>
-          <h2 className="story-author">By {author}</h2>
+          </h2>
+          <h3 className="story-author">By {author}</h3>
         </header>
         <span className={storyTextClassName}>
           <p dangerouslySetInnerHTML={{ __html: text }} />
