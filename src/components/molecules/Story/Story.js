@@ -20,8 +20,8 @@ const Story = ({ title, text, url, author, score, timestamp }) => {
       className={articleClassName}
     >
       <span className={scoreWrapperClassName}>
-        <p>{score}</p>
-        <p>Score</p>
+        <p className="article-score">{score}</p>
+        <p className="score-text">Score</p>
       </span>
       <section className="article-wrapper">
         <header className="story-header">
