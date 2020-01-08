@@ -1,5 +1,5 @@
 import React from "react";
-import Story from "../Story/Story";
+import Story from "../../Molecules/Story/Story";
 import "./StoryGrid.css";
 
 const StoryGrid = ({ stories }) => (

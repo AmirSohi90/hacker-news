@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import StoryGrid from "./components/molecules/StoryGrid/StoryGrid";
-import Pagination from "./components/molecules/Pagination/Pagination";
+import StoryGrid from "./components/Organisms/StoryGrid/StoryGrid";
+import Pagination from "./components/Molecules/Pagination/Pagination";
 import { getTopStories, getTopStoriesIds } from "./services/getTopStories";
 import getMaxPage from "./utils/getMaxPage";
 
