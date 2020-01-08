@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import StoryGrid from "./components/Organisms/StoryGrid/StoryGrid";
 import Pagination from "./components/Molecules/Pagination/Pagination";
+import Loading from "./components/Atoms/Loading/Loading";
 import { getTopStories, getTopStoriesIds } from "./services/getTopStories";
 import getMaxPage from "./utils/getMaxPage";
 
@@ -45,18 +46,22 @@ class App extends Component {
   };
 
   render() {
-    const { stories, pageStart, pageEnd, page, maxPage } = this.state;
+    const {
+      increasePagination,
+      decreasePagination,
+      state: { stories, pageStart, pageEnd, page, maxPage }
+    } = this;
     return (
       <div className="app">
-        {Boolean(!stories.length) && <p className="loading">Loading...</p>}
+        {Boolean(!stories.length) && <Loading />}
         {Boolean(stories.length) && (
           <div>
             <header className="app-header">
               <Pagination
                 maxPage={maxPage}
                 page={page}
-                increasePagination={this.increasePagination}
-                decreasePagination={this.decreasePagination}
+                increasePagination={increasePagination}
+                decreasePagination={decreasePagination}
               />
             </header>
             <main className="main">

@@ -3,6 +3,7 @@ import App from "./App";
 import StoryGrid from "./components/Organisms/StoryGrid/StoryGrid";
 import Story from "./components/Molecules/Story/Story";
 import Pagination from "./components/Molecules/Pagination/Pagination";
+import Loading from "./components/Atoms/Loading/Loading";
 import { mount } from "enzyme";
 
 describe("App", () => {
@@ -29,13 +30,14 @@ describe("App", () => {
 
   it("should render App with the loading component", () => {
     const wrapper = mount(<App />);
-    expect(wrapper.find("loading").text()).toBe("Loading...");
+    expect(wrapper.find(Loading).length).toBe(1);
   });
 
   it("should render App with the correct components", () => {
     const wrapper = mount(<App />);
     wrapper.setState({ stories: mockedStories });
     wrapper.update();
+    expect(wrapper.find(Loading).length).toBe(0);
     expect(wrapper.find(StoryGrid).length).toBe(1);
     expect(wrapper.find(Story).length).toBe(2);
     expect(wrapper.find(Pagination).length).toBe(1);
