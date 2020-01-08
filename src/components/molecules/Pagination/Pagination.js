@@ -19,7 +19,7 @@ const Pagination = ({
     >
       Prev Page
     </button>
-    <h1 className="page-title">{page}</h1>
+    <p className="page-title">{page}</p>
     <button
       style={{
         backgroundColor: page === maxPage ? "grey" : "#4CAF50",
