@@ -48,7 +48,7 @@ class App extends Component {
     const { stories, pageStart, pageEnd, page, maxPage } = this.state;
     return (
       <div className="app">
-        {Boolean(!stories.length) && <p>Loading...</p>}
+        {Boolean(!stories.length) && <p className="loading">Loading...</p>}
         {Boolean(stories.length) && (
           <div>
             <header className="app-header">
