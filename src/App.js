@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import StoryGrid from "./components/molecules/StoryGrid/StoryGrid";
 import { getTopStories, getTopStoriesIds } from "./services/getTopStories";
 import "./App.css";
 
@@ -19,14 +20,13 @@ class App extends Component {
 
   render() {
     const { stories } = this.state;
-    return Boolean(!stories.length) ? (
-      <div className="App">
-        <p>Loading...</p>
-      </div>
-    ) : (
-      <div className="App">
-        <header>{/* header will go here */}</header>
-        <main className="main">{/* story grid goes here */}</main>
+    return (
+      <div className="app">
+        {Boolean(!stories.length) && <p>Loading...</p>}
+        <header className="app-header">{/* header will go here */}</header>
+        <main className="main">
+          <StoryGrid stories={stories} />
+        </main>
       </div>
     );
   }

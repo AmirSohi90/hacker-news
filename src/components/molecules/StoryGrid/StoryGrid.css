@@ -1,0 +1,8 @@
+.grid-wrapper {
+  max-width: 1440px;
+  margin: 0 10px;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(8, auto);
+  grid-template-rows: repeat(3, auto);
+}
