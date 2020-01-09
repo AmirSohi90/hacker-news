@@ -6,22 +6,7 @@ describe("Pagination", () => {
   const increasePaginationMock = jest.fn();
   const decreasePaginationMock = jest.fn();
 
-  it("should render Pagination with the page-decrease button disabled", () => {
-    const wrapper = mount(
-      <Pagination
-        page={1}
-        increasePagination={increasePaginationMock}
-        decreasePagination={decreasePaginationMock}
-        maxPage={3}
-      />
-    );
-
-    expect(wrapper.find(".page-decrease").props().disabled).toBe(true);
-    wrapper.find(".page-increase").simulate("click");
-    expect(increasePaginationMock).toHaveBeenCalledTimes(1);
-  });
-
-  it("should render Pagination with the page-increase button disabled", () => {
+  it("should render Pagination with the correct props", () => {
     const wrapper = mount(
       <Pagination
         page={3}
@@ -30,9 +15,8 @@ describe("Pagination", () => {
         maxPage={3}
       />
     );
-
-    expect(wrapper.find(".page-increase").props().disabled).toBe(true);
-    wrapper.find(".page-decrease").simulate("click");
-    expect(decreasePaginationMock).toHaveBeenCalledTimes(1);
+    expect(wrapper.find(".page-title").text()).toBe("3");
+    expect(wrapper.find(".disabled").length).toBe(1);
+    expect(wrapper.find(".enabled").length).toBe(1);
   });
 });

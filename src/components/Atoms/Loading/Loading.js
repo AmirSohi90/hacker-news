@@ -5,7 +5,7 @@ import loadingCat from "./assets/loading-cat.gif";
 
 const Loading = () => (
   <div className="loading-wrapper">
-    <img className="loading-gif" alt="cat-gif" src={loadingCat} />
+    <img className="loading-gif" alt="loading-cat-gif" src={loadingCat} />
   </div>
 );
 

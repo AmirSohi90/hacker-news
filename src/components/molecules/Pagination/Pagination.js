@@ -1,4 +1,6 @@
 import React from "react";
+import PaginationButton from "../../Atoms/PaginationButton/PaginationButton";
+
 import "./Pagination.css";
 
 const Pagination = ({
@@ -8,29 +10,17 @@ const Pagination = ({
   maxPage
 }) => (
   <div className="pagination-wrapper">
-    <button
-      style={{
-        backgroundColor: page === 1 ? "grey" : "#4CAF50",
-        cursor: page === 1 ? "not-allowed" : "pointer"
-      }}
-      className="page-decrease button"
+    <PaginationButton
+      buttonText="Prev Page"
       disabled={page === 1}
-      onClick={() => decreasePagination()}
-    >
-      Prev Page
-    </button>
+      onClick={decreasePagination}
+    />
     <p className="page-title">{page}</p>
-    <button
-      style={{
-        backgroundColor: page === maxPage ? "grey" : "#4CAF50",
-        cursor: page === maxPage ? "not-allowed" : "pointer"
-      }}
-      className="page-increase button"
+    <PaginationButton
+      buttonText="Next Page"
       disabled={page === maxPage}
-      onClick={() => increasePagination()}
-    >
-      Next Page
-    </button>
+      onClick={increasePagination}
+    />
   </div>
 );
 

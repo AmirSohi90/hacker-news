@@ -42,4 +42,29 @@ describe("App", () => {
     expect(wrapper.find(Story).length).toBe(2);
     expect(wrapper.find(Pagination).length).toBe(1);
   });
+
+  it("should increase page on increasePagination click", () => {
+    const wrapper = mount(<App />);
+    wrapper.setState({ maxPage: 3, page: 1, stories: mockedStories.fill(5) });
+    wrapper.update();
+
+    expect(wrapper.find(".page-title").text()).toBe("1");
+    wrapper.find(".enabled").simulate("click");
+    expect(wrapper.find(".page-title").text()).toBe("2");
+    expect(wrapper.state("page")).toBe(2);
+  });
+
+  it("should decrease page on decreasePagination click", () => {
+    const wrapper = mount(<App />);
+    wrapper.setState({ maxPage: 3, page: 2, stories: mockedStories.fill(5) });
+    wrapper.update();
+
+    expect(wrapper.find(".page-title").text()).toBe("2");
+    wrapper
+      .find(".enabled")
+      .at(0)
+      .simulate("click");
+    expect(wrapper.find(".page-title").text()).toBe("1");
+    expect(wrapper.state("page")).toBe(1);
+  });
 });
