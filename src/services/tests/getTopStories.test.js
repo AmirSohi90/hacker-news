@@ -2,7 +2,8 @@ import axios from "axios";
 import {
   getTopStoriesIds,
   getItemFromHackerNews,
-  getTopStories
+  getTopStories,
+  getCommentFromHackerNews
 } from "../getTopStories";
 
 jest.mock("axios");
@@ -23,7 +24,7 @@ describe("getItemFromHackerNews", () => {
 
     axios.get.mockImplementation(() => Promise.resolve(data));
 
-    await expect(getItemFromHackerNews(1, "story")).resolves.toEqual(data.data);
+    await expect(getItemFromHackerNews(1)).resolves.toEqual(data.data);
   });
 
   it("successfully fetches a comment from Hacker News", async () => {
@@ -31,19 +32,7 @@ describe("getItemFromHackerNews", () => {
 
     axios.get.mockImplementation(() => Promise.resolve(data));
 
-    await expect(getItemFromHackerNews(1, "comment")).resolves.toEqual(
-      "this is a comment"
-    );
-  });
-
-  it("returns 'no comment' if comment has no text from Hacker News", async () => {
-    const data = { data: {} };
-
-    axios.get.mockImplementation(() => Promise.resolve(data));
-
-    await expect(getItemFromHackerNews(1, "comment")).resolves.toEqual(
-      "No Comment"
-    );
+    await expect(getItemFromHackerNews(1)).resolves.toEqual(data.data);
   });
 });
 
@@ -76,5 +65,43 @@ describe("getTopStories", () => {
     axios.get.mockImplementation(() => Promise.resolve(data));
 
     await expect(getTopStories([1])).resolves.toEqual(returnedData);
+  });
+});
+
+describe.only("getCommentFromHackerNews", () => {
+  it("fetches the right comment from hacker news", async () => {
+    const returnedData = {
+      text: "Comment"
+    };
+
+    axios.get.mockImplementation(() => Promise.resolve({ data: returnedData }));
+
+    await expect(getCommentFromHackerNews([1])).resolves.toEqual(
+      returnedData.text
+    );
+  });
+
+  it("returns no comment if data from getItemFromHackerNews doesn't have text key", async () => {
+    const returnedData = {
+      time: "testing time"
+    };
+    axios.get.mockImplementation(() => Promise.resolve({ data: returnedData }));
+
+    await expect(getCommentFromHackerNews([1])).resolves.toEqual("No Comment");
+  });
+
+  it("returns no comment if data from getItemFromHackerNews doesn't have text key", async () => {
+    const returnedData = {
+      time: "testing time"
+    };
+    axios.get.mockImplementation(() => Promise.resolve({ data: returnedData }));
+
+    await expect(getCommentFromHackerNews([1])).resolves.toEqual("No Comment");
+  });
+
+  it("returns no comment if no data comes back from getItemFromHackerNews", async () => {
+    axios.get.mockImplementation(() => Promise.resolve({ data: {} }));
+
+    await expect(getCommentFromHackerNews([1])).resolves.toEqual("No Comment");
   });
 });

@@ -1,7 +1,17 @@
 import React from "react";
 import "./PaginationButton.css";
 
-const PaginationButton = ({ buttonText, disabled, onClick }) => {
+interface Props {
+  buttonText: string;
+  disabled: boolean;
+  onClick: () => void;
+}
+
+const PaginationButton: React.SFC<Props> = ({
+  buttonText,
+  disabled,
+  onClick
+}) => {
   const buttonClassName = disabled ? "disabled button" : "enabled button";
   return (
     <button

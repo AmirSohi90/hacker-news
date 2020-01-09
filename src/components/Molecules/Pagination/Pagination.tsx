@@ -3,7 +3,14 @@ import PaginationButton from "../../Atoms/PaginationButton/PaginationButton";
 
 import "./Pagination.css";
 
-const Pagination = ({
+interface Props {
+  page: number;
+  increasePagination: () => void;
+  decreasePagination: () => void;
+  maxPage: number;
+}
+
+const Pagination: React.SFC<Props> = ({
   page,
   increasePagination,
   decreasePagination,

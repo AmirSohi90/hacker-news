@@ -4,21 +4,28 @@ import Pagination from "./components/Molecules/Pagination/Pagination";
 import Loading from "./components/Atoms/Loading/Loading";
 import { getTopStories, getTopStoriesIds } from "./services/getTopStories";
 import getMaxPage from "./utils/getMaxPage";
+import StoryInterface from "./shared/StoryInterface";
 
 import "./App.css";
 
-class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      storyIds: [],
-      stories: [],
-      page: 1,
-      pageStart: 0,
-      pageEnd: 24,
-      maxPage: null
-    };
-  }
+interface State {
+  storyIds: number[];
+  stories: StoryInterface[];
+  page: number;
+  pageStart: number;
+  pageEnd: number;
+  maxPage: number;
+}
+
+class App extends Component<{}, State> {
+  state: State = {
+    storyIds: [],
+    stories: [],
+    page: 1,
+    pageStart: 0,
+    pageEnd: 24,
+    maxPage: 1
+  };
 
   componentDidMount = async () => {
     const storyIds = await getTopStoriesIds();

@@ -2,7 +2,13 @@ import React from "react";
 import Story from "../../Molecules/Story/Story";
 import "./StoryGrid.css";
 
-const StoryGrid = ({ stories }) => (
+import StoryInterface from "../../../shared/StoryInterface";
+
+interface Props {
+  stories: StoryInterface[];
+}
+
+const StoryGrid: React.SFC<Props> = ({ stories }) => (
   <div className="grid-wrapper">
     {stories.map(story => (
       <Story
