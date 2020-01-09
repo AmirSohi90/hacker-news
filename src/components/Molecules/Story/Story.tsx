@@ -1,7 +1,17 @@
 import React, { useState } from "react";
 import "./Story.css";
+import StoryInterface from "../../../shared/StoryInterface";
 
-const Story = ({ title, text, url, author, score, timestamp }) => {
+type OmitId = Omit<StoryInterface, "id">;
+
+const Story: React.SFC<OmitId> = ({
+  title,
+  text,
+  url,
+  author,
+  score,
+  timestamp
+}) => {
   const [isExpanded, setExpanded] = useState(false);
 
   const articleClassName = isExpanded ? "box box-expanded" : "box";
