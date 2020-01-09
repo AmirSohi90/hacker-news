@@ -18,7 +18,7 @@ Something like the following:
 
 
     this.setState({ stories: [...firstPage], maxPage });
-    const rest = await getTopStories(storyIds.slice(24, storyIds.length));
+    const rest = await getTopStories(storyIds.slice(72, storyIds.length));
     const stories = [...firstPage, ...rest]
     this.setState({stories})
   };
