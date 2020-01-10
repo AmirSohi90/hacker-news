@@ -2,7 +2,7 @@ import getReadableTimeStamp, {
   getReadableTime,
   getMonth,
   getDay
-} from "../getReadableTimeStamp";
+} from "../getReadableTimestamp";
 
 describe("getTimeStamp", () => {
   it("should return the correct month", () => {
