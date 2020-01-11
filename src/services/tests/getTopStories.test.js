@@ -68,7 +68,7 @@ describe("getTopStories", () => {
   });
 });
 
-describe.only("getCommentFromHackerNews", () => {
+describe("getCommentFromHackerNews", () => {
   it("fetches the right comment from hacker news", async () => {
     const returnedData = {
       text: "Comment"
